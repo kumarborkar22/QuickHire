@@ -97,3 +97,6 @@ def stop_camera(request):
         camera.release()
         camera = None
     return JsonResponse({"message": "Camera stopped"})
+
+def attendance3(request):
+    return render(request, 'attendance/attendance3.html')

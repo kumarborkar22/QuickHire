@@ -183,7 +183,7 @@ document.getElementById("confirm-btn").addEventListener("click", function() {
     fetch("{% url 'stop_camera' %}")
     .then(() => {
         console.log("Camera stopped");
-        window.location.href = "{% url 'attendance3' %}";  // Redirect to attendance3
+        window.location.href = "{% url 'attendance3' %}";
     })
     .catch(error => console.error("Error stopping camera:", error));
 });

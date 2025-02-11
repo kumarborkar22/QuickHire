@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f8f8;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .top-right-profile {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #f0f0f0;
+            padding: 10px 15px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            font-size: 10px;
+            width: auto;
+            height: 50px;
+            gap: 10px;
+        }
+
+        .top-right-profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .top-right-info h4 {
+            margin: 0;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .top-right-info p {
+            margin: 0;
+            font-size: 12px;
+        }
+
+        .card {
+            background: #21564B;
+            padding: 20px;
+            border-radius: 15px;
+            width: 400px;
+            height: 250px;
+            text-align: center;
+            color: white;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .profile-section img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-right: 100px;
+        }
+
+        .user-details h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .time {
+            font-size: 18px;
+        }
+
+        .status {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-right: 150px;
+        }
+
+        .success-icon {
+            background: #4CAF50;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 29px;
+            position: absolute;
+            bottom: 50px;
+            right: 50px;
+            color: white;
+        }
+
+        .share-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-right-profile">
+            <img src="/profile.jpg" alt="Profile Picture">
+            <div class="top-right-info">
+                <h4>Pratik</h4>
+                <p>pratikchanna@icloud.com</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="profile-section">
+                <img src="/profile.jpg" alt="Avatar">
+                <div class="user-details">
+                    <h2>Pratik</h2>
+                    <p class="time">10:15:07</p>
+                </div>
+            </div>
+            <p class="status">Check In Confirmed</p>
+            <div class="success-icon">&#10004;</div>
+            <div class="share-icon">&#128279;</div>
+        </div>
+    </div>
+</body>
+</html>

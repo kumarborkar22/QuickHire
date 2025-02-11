@@ -99,4 +99,6 @@ def stop_camera(request):
     return JsonResponse({"message": "Camera stopped"})
 
 def attendance3(request):
-    return render(request, 'attendance/attendance3.html')
+    timestamp = now().timestamp()
+    image_url = settings.MEDIA_URL + "captured_face.jpg"
+    return render(request, 'attendance/attendance3.html', {'image_url': image_url, 'timestamp': timestamp})

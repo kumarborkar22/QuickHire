@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: white; 
+    font-size: 20px;
+}
+.container {
+    background: white;
+    color: black;
+    padding: 20px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 1000px;
+}
+.top-right-profile {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #f0f0f0;
+    padding: 10px 15px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    width: 20%;
+    height: 50px;
+    gap: 10px;
+}
+.top-right-profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.top-right-info h4 {
+    margin: 0;
+    font-size: 14px;
+}
+.top-right-info p {
+    margin: 0;
+    font-size: 12px;
+}
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+.dashboard::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    height: 80%;
+    width: 2px;
+    background-color: rgba(0, 0, 0, 0.2);
+    transform: translateX(-50%);
+}
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    width: 50%;
+}
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.profile .normal_text {
+    color: grey;
+}
+.mark-attendance {
+    margin-top: 20px;
+}
+.mark-attendance button {
+    background: rgb(81, 172, 81);
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.mark-attendance button::after {
+    content: '✔';
+    font-size: 14px;
+}
+.timer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 50%;
+}
+.timer-container {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+}
+.timer-box, .overtime-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.timer-box h5, .overtime-box h5 {
+    font-size: 22px;
+    font-weight: bold;
+}
+.overtime-box h5 {
+    color: red;
+}
+.logout {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.logout button {
+    background: black;
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+</style>
+<body>
+    <div class="container">
+
+        <div class="top-right-profile">
+            <img src="/profile.jpg" alt="Profile Picture">
+            <div class="top-right-info">
+                <h4>Pratik</h4>
+                <p>pratikchanna@icloud.com</p>
+            </div>
+        </div>
+
+        <header class="dashboard">
+            <div class="profile-section">
+                <div class="profile">
+                    <img src="/profile.jpg" alt="Profile Picture">
+                    <div class="profile-info">
+                        <h5 class="normal_text">Good Morning</h5>
+                        <h3>Pratik</h3>
+                        <p>pratikchanna@icloud.com</p>
+                        <p>07/02/2025</p>
+                    </div>
+                </div>
+                <div class="mark-attendance">
+                    <button>Mark Attendance</button>
+                </div>
+            </div>
+
+            <div class="timer-section">
+                <div class="timer-container">
+                    <div class="timer-box">
+                        <p>Timer</p>
+                        <h5>00:00:00</h5>
+                    </div>
+                    <div class="overtime-box">
+                        <p>Overtime</p>
+                        <h5>00:00:00</h5>
+                    </div>
+                </div>
+                <div class="logout">
+                    <button>Logout</button>
+                </div>
+            </div>
+        </header>
+    </div>
+</body>
+</html>

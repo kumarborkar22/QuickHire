@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Attendance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: #f8f8f8;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+        }
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+        .top-right-profile {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #f0f0f0;
+            padding: 10px 15px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            font-size: 10px;
+            width: 15%;
+            height: 50px;
+            gap: 10px;
+        }
+        .top-right-profile img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .top-right-info h4 {
+            margin: 0;
+            font-size: 14px;
+            text-align: left;
+        }
+        .top-right-info p {
+            margin: 0;
+            font-size: 12px;
+        }
+        .top-left-menu {
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+            width: 50%;
+            height: 50px;
+            gap: 30px;
+            margin-top: 80px;
+            margin-right: 900px;
+        }
+        .camera-box {
+            width: 100%;
+            height: 400px;
+            background: #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        #video-feed, #captured-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 25px;
+        }
+        #captured-image {
+            display: none;
+            margin-bottom: 400px;
+        }
+        .buttons {
+            margin-top: 10px;
+        }
+        .capture-btn, .retake-btn , .confirm-btn{
+            background: rgb(81, 172, 81);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .retake-btn {
+            background: rgb(205, 33, 33);
+            display: none;
+        }
+        .confirm-btn {
+            background: royalblue;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-right-profile">
+            <img src="/profile.jpg" alt="Profile Picture">
+            <div class="top-right-info">
+                <h4>Pratik</h4>
+                <p>pratikchanna@icloud.com</p>
+            </div>
+        </div>
+        <header>
+            <h2 class="top-left-menu"><i class="fa-solid fa-arrow-left"></i> Mark Attendance</h2>
+
+            <div class="camera-box">
+                <img id="video-feed" src="{% url 'video_feed' %}" alt="Live Camera Feed">
+                <img id="captured-image" alt="Captured Image">
+            </div>
+
+            <button class="capture-btn" id="capture-btn">Capture <i class="fa-solid fa-camera-retro"></i></button>
+            <button class="retake-btn" id="retake-btn">Retake <i class="fa-solid fa-repeat"></i></button>
+            <button class="confirm-btn" id="confirm-btn">Confirm <i class="fa-solid fa-check"></i>
+            </button>
+            
+        </header>    
+    </div>
+
+    <script>
+        document.getElementById("capture-btn").addEventListener("click", function() {
+    fetch("{% url 'capture_image' %}")
+    .then(response => response.json())
+    .then(data => {
+        if (data.image_url) {
+            let videoFeed = document.getElementById("video-feed");
+            let capturedImage = document.getElementById("captured-image");
+            let captureBtn = document.getElementById("capture-btn");
+            let retakeBtn = document.getElementById("retake-btn");
+            let confirmBtn = document.getElementById("confirm-btn");
+
+            let timestamp = new Date().getTime();
+            capturedImage.src = data.image_url + "?t=" + timestamp;
+            capturedImage.style.display = "block";
+            videoFeed.style.visibility = "hidden";
+
+            captureBtn.style.display = "none";
+            retakeBtn.style.display = "inline-block";
+            confirmBtn.style.display = "inline-block";
+        } else {
+            alert("Capture failed!");
+        }
+    })
+    .catch(error => console.error("Error:", error));
+});
+
+document.getElementById("retake-btn").addEventListener("click", function() {
+    let videoFeed = document.getElementById("video-feed");
+    let capturedImage = document.getElementById("captured-image");
+    let captureBtn = document.getElementById("capture-btn");
+    let retakeBtn = document.getElementById("retake-btn");
+    let confirmBtn = document.getElementById("confirm-btn");
+
+    capturedImage.style.display = "none";
+    videoFeed.style.visibility = "visible";
+    
+    captureBtn.style.display = "inline-block";
+    retakeBtn.style.display = "none";
+    confirmBtn.style.display = "none";
+
+    let timestamp = new Date().getTime();
+    videoFeed.src = "{% url 'video_feed' %}?t=" + timestamp;
+});
+
+document.getElementById("confirm-btn").addEventListener("click", function() {
+    fetch("{% url 'stop_camera' %}")
+    .then(() => {
+        console.log("Camera stopped");
+        window.location.href = "/next-page/";
+    })
+    .catch(error => console.error("Error stopping camera:", error));
+});
+    </script>
+</body>
+</html>

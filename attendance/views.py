@@ -38,21 +38,29 @@ def home(request):
 
 def capture_image(request):
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+    
     success, frame = camera.read()
     
     if success:
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+        faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5, minSize=(50, 50))
 
-        for (x, y, w, h) in faces:
-            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 3)
+        if len(faces) > 0:
+            for (x, y, w, h) in faces:
+                cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 3)
 
-        image_path = os.path.join(settings.MEDIA_ROOT, "captured_face.jpg")
-        cv2.imwrite(image_path, frame)
+            image_path = os.path.join(settings.MEDIA_ROOT, "captured_face.jpg")
+            cv2.imwrite(image_path, frame)
 
-        return JsonResponse({"message": "Image saved successfully with face detection!", "image_url": settings.MEDIA_URL + "captured_face.jpg"})
+            return JsonResponse({
+                "message": "Image saved successfully with face detection!",
+                "image_url": settings.MEDIA_URL + "captured_face.jpg"
+            })
+        else:
+            return JsonResponse({"error": "No face detected! Please position yourself in front of the camera."}, status=400)
 
     return JsonResponse({"error": "Failed to capture image"}, status=500)
+
 
 def attendance_records(request):
     records = Attendance.objects.all().order_by('-timestamp')

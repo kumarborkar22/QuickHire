@@ -155,11 +155,12 @@
             retakeBtn.style.display = "inline-block";
             confirmBtn.style.display = "inline-block";
         } else {
-            alert("Capture failed!");
+            alert(data.error || "Capture failed!");
         }
     })
     .catch(error => console.error("Error:", error));
 });
+
 
 document.getElementById("retake-btn").addEventListener("click", function() {
     let videoFeed = document.getElementById("video-feed");

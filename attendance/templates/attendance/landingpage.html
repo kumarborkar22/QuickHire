@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickHire</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+            margin: 20px;
+        }
+
+        .navbar .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        .nav-links li a:hover {
+            color: orange;
+        }
+
+        .auth-buttons button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .signup {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .signin {
+            background-color: orange;
+            color: white;
+        }
+
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px 40px;
+            background-color: #fff;
+            border-radius: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        .hero-content {
+            max-width: 50%;
+            margin-bottom: 100px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5em;
+            color: #333;
+            line-height: 1.2;
+        }
+
+        .highlight {
+            color: green;
+        }
+
+        .highlight2 {
+            color: royalblue;
+        }
+
+        .hero-content p {
+            margin: 20px 0;
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        .search-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            font-size: 1em;
+            color: orange;
+            border: 1px solid orange;
+            border-radius: 20px;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .tab:hover {
+            background-color: orange;
+            color: white;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .field {
+            flex: 1;
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .input {
+            display: flex;
+            align-items: center;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .input .icon {
+            margin-right: 10px;
+            color: orange;
+        }
+
+        select {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 1em;
+            color: #333;
+        }
+
+        .search-button {
+            padding: 12px 20px;
+            background: orange;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-button:hover {
+            background: #e67e22;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+        }
+
+        .contact-section {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.9em;
+        }
+
+        .contact-section i {
+            font-size: 1.5em;
+            color: orange;
+        }
+
+        .contact-section span {
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">QuickHire</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Apply</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button class="signup">Sign Up</button>
+            <button class="signin">Sign In</button>
+        </div>
+    </header>
+
+    <main class="hero-section">
+        <div class="hero-content">
+            <h1>WELCOME TO <br><span class="highlight">NEXTGEN <span class="highlight2">QUICKHIRE</span></span></h1>
+            <p>QuickHire is a dynamic and innovative company dedicated to addressing critical market challenges, such as unemployment and the lack of proper skill alignment within the workforce. We aim to bridge the gap between employers and skilled talent by offering two powerful business models tailored to meet industry demands efficiently and effectively.</p>
+            <div class="search-section">
+                <div class="tabs">
+                    <button class="tab">Job Seeker</button>
+                    <button class="tab">Hire</button>
+                    <button class="tab">Intern</button>
+                </div>
+                <div class="search-bar">
+                    <div class="field">
+                        <label>Location</label>
+                        <div class="input"><i class="fa-solid fa-location-dot icon"></i>
+                            <select>
+                                <option>Pune, India</option>
+                                <option>Mumbai, India</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>Role</label>
+                        <div class="input"><i class="fa-solid fa-briefcase icon"></i>
+                            <select>
+                                <option>UI/UX Designer</option>
+                                <option>Software Developer</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="/landingpage_bg_photo.png" alt="Illustration">
+        </div>
+    </main>
+
+    <div class="contact-section">
+        <i class="fa-solid fa-phone"></i>
+        <div>
+            <span>Contact Us</span><br>
+            <span>7559308489</span>
+        </div>
+    </div>
+</body>
+</html>

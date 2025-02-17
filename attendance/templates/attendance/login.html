@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    body {
+  margin: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: #d0d5d9;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-form {
+  padding: 2rem;
+  border-radius: 10px;
+  width: 350px;
+  margin-right: 4rem;
+}
+
+.login-form h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  font-size: 10px;
+  color: rgb(57, 56, 56);
+}
+
+.login-form input {
+  width: 100%;
+  height: 25px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+}
+
+input::placeholder {
+  color: black;
+  font-weight: bold;
+}
+
+.forgot-password {
+  display: block;
+  margin-bottom: 1rem;
+  text-align: right;
+  font-size: 0.6rem;
+  text-decoration: none;
+  color: #555;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+button {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #333;
+}
+
+.login-form p {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.login-form p a {
+  color: white;
+  text-decoration: none;
+}
+
+.login-form p a:hover {
+  text-decoration: underline;
+}
+
+.image-section {
+  flex: 1;
+}
+
+.image-section img {
+  width: 80%;
+  border-radius: 10px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 3.5rem;
+}
+
+.footer a {
+  margin: 0 0.5rem;
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: white;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="login-form">
+      <h2>Log in</h2>
+      <form>
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Alex Disuza">
+
+        <label for="contact">Contact Number</label>
+        <input type="text" id="contact" placeholder="+91 9881860335">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="AlexDisuza24@gmail.com">
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="********">
+
+        <a href="#" class="forgot-password">Forgot password?</a>
+        <button type="submit">Login</button>
+      </form>
+      <p>Don’t have an account? <a href="#">Sign up here</a></p>
+
+      <div class="footer">
+        <a href="#">Privacy policy</a>
+        <a href="#">About us</a>
+        <a href="#">Terms & Conditions</a>
+    </div>
+
+    </div>
+    <div class="image-section">
+      <img src="/login_img" alt="Team collaboration">
+    </div>
+  </div>
+</body>
+</html>

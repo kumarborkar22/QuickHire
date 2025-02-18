@@ -6,10 +6,97 @@
     <title>Attendance</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background: #f8f8f8;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #b3b3b4;
+            height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            margin-left: 40px;
+        }
+
+        .logo-q {
+            width: 40px;
+            height: auto;
+            filter: brightness(0) invert(0);
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 70px;
+        }
+
+        .menu li {
+            padding: 10px 15px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .menu li.active {
+            background: black;
+            color: white;
+        }
+
+        .menu li.active img {
+            filter: brightness(0) invert(1);
+        }
+
+        .menu li:hover {
+            background: grey;
+        }
+
+        .menu li img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) invert(0);
+        }
+
+        .menu-title {
+            color: rgb(72, 68, 68);
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .sidebar .bottom {
+            padding-top: 20px;
+        }
+
+        .sidebar-line {
+            content: "";
+            width: 80%;
+            height: 2px;
+            background-color: rgba(0, 0, 0, 0.2);
+            margin: 2px auto;
         }
 
         .container {
@@ -17,22 +104,23 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            flex-direction: column;
+            width: calc(100% - 250px);
+            margin-left: 250px;
             position: relative;
         }
 
         .top-right-profile {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #f0f0f0;
+            top: 50px;
+            right: 50px;
+            background: #b9b3b3;
             padding: 10px 15px;
             border-radius: 50px;
             display: flex;
             align-items: center;
             font-size: 10px;
-            width: auto;
-            height: 50px;
+            width: 200px;
+            height: 30px;
             gap: 10px;
         }
 
@@ -57,11 +145,13 @@
             background: #21564B;
             padding: 20px;
             border-radius: 15px;
-            width: 400px;
+            width: 450px;
             height: 250px;
             text-align: center;
             color: white;
-            position: relative;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -79,7 +169,11 @@
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            margin-right: 100px;
+            margin-right: 50px;
+        }
+        
+        .user-details {
+            margin-right: 90px;
         }
 
         .user-details h2 {
@@ -95,7 +189,7 @@
             font-size: 16px;
             font-weight: bold;
             margin-top: 20px;
-            margin-right: 150px;
+            margin-right: 100px;
         }
 
         .success-icon {
@@ -123,6 +217,31 @@
     </style>
 </head>
 <body>
+
+    <div class="sidebar">
+        <h2 class="logo">
+            <img src="/quickhire.png" alt="Q" class="logo-q">
+            <span class="logo-text">UICKHIRE</span>
+        </h2>
+        <div class="sidebar-line"></div>
+        
+        <ul class="menu">
+            <h4 class="menu-title">MENU</h4>
+            <li class="active">
+                <img src="/dashboard.png" alt="Dashboard"> Dashboard
+            </li>
+            <li><img src="/projects.png" alt="Projects"> Projects</li>
+            <li><img src="/analytics.png" alt="Analytics"> Analytics</li>
+            <li><img src="/reports.png" alt="Reports"> Reports</li>
+            <li><img src="/extension.png" alt="Extensions"> Extensions</li>
+            <li><img src="/employee.png" alt="Employees"> Employees</li>
+            <li><img src="/task.png" alt="Tasks"> Tasks</li>
+            <li><img src="/attendance.png" alt="Attendance"> Attendance</li>
+            <li><img src="/setting.png" alt="Settings"> Settings</li>
+            <li><img src="/logout.png" alt="Logout"> Log Out</li>
+        </ul>
+    </div>
+
     <div class="container">
         <div class="top-right-profile">
             <img src="/profile.jpg" alt="Profile Picture">

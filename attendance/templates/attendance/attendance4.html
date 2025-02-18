@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Attendance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
         body {
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -149,13 +151,32 @@
             height: 250px;
             text-align: center;
             color: white;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+        }
+
+        .top-left-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: absolute;
+            top: -150px;
+            left: -200px;
+            font-size: 20px;
+            color: black;
+        }
+
+        .back-arrow {
+            color: black;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .back-arrow:hover {
+            color: #333;
         }
 
         .profile-section {
@@ -252,6 +273,8 @@
         </div>
 
         <div class="card">
+            <h2 class="top-left-menu"><a href="dashboard.html" class="back-arrow"><i class="fa-solid fa-arrow-left"></i></a>Mark Attendance</h2>
+
             <div class="profile-section">
                 <img src="/profile.jpg" alt="Avatar">
                 <div class="user-details">

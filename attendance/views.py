@@ -110,3 +110,6 @@ def attendance3(request):
     timestamp = now().timestamp()
     image_url = settings.MEDIA_URL + "captured_face.jpg"
     return render(request, 'attendance/attendance3.html', {'image_url': image_url, 'timestamp': timestamp})
+
+def attendance1(request):
+    return render(request, 'attendance/attendance1.html')  # Update path

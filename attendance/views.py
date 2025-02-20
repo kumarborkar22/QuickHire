@@ -113,21 +113,3 @@ def attendance3(request):
 
 def attendance1(request):
     return render(request, 'attendance/attendance1.html')  # Update path
-
-def get_attendance_data(request):
-    """
-    API endpoint to fetch attendance data.
-    Returns a JSON response with username, entry time, and image URL.
-    """
-    attendance_records = Attendance.objects.all().order_by('-timestamp')
-    data = [
-        {
-            "username": record.name,  # Update field name based on your model
-            "email": record.email,    # Update field name based on your model
-            "entry_time": record.timestamp.strftime('%Y-%m-%d %H:%M:%S'),
-            "image_url": record.image.url if record.image else None
-        }
-        for record in attendance_records
-    ]
-
-    return JsonResponse(data, safe=False)

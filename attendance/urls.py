@@ -17,8 +17,6 @@ urlpatterns = [
     path('records/', attendance_records, name='attendance_records'),
     path('download/', download_attendance_csv, name='download_csv'),
     path('attendance3/', views.attendance3, name='attendance3'),
-    path('api/attendance/', views.get_attendance_data, name='get_attendance_data'),
-
 
 ]
 

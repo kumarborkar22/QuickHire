@@ -297,32 +297,32 @@
 
     <div class="sidebar">
         <h2 class="logo">
-            <img src="/quickhire.png" alt="Q" class="logo-q">
+            {% load static %}
+            <img src="{% static 'images/quickhire.png' %}" alt="Q" class="logo-q">
             <span class="logo-text">UICKHIRE</span>
         </h2>
         <div class="sidebar-line"></div>
         
         <ul class="menu">
             <h4 class="menu-title">MENU</h4>
-            <li class="active">
-                <img src="/dashboard.png" alt="Dashboard"> Dashboard
-            </li>
-            <li><img src="/projects.png" alt="Projects"> Projects</li>
-            <li><img src="/analytics.png" alt="Analytics"> Analytics</li>
-            <li><img src="/reports.png" alt="Reports"> Reports</li>
-            <li><img src="/extension.png" alt="Extensions"> Extensions</li>
-            <li><img src="/employee.png" alt="Employees"> Employees</li>
-            <li><img src="/task.png" alt="Tasks"> Tasks</li>
-            <li><img src="/attendance.png" alt="Attendance"> Attendance</li>
-            <li><img src="/setting.png" alt="Settings"> Settings</li>
-            <li><img src="/logout.png" alt="Logout"> Log Out</li>
+            {% load static %}
+            <li class="active"><img src="{% static 'images/dashboard.png' %}" alt="Dashboard">Dashboard</li>
+            <li><img src="{% static 'images/projects.png' %}" alt="Projects"> Projects</li>
+            <li><img src="{% static 'images/analytics.png' %}" alt="Analytics"> Analytics</li>
+            <li><img src="{% static 'images/reports.png' %}" alt="Reports"> Reports</li>
+            <li><img src="{% static 'images/extension.png' %}" alt="Extensions"> Extensions</li>
+            <li><img src="{% static 'images/employee.png' %}" alt="Employees"> Employees</li>
+            <li><img src="{% static 'images/task.png' %}" alt="Tasks"> Tasks</li>
+            <li><img src="{% static 'images/attendance.png' %}" alt="Attendance"> Attendance</li>
+            <li><img src="{% static 'images/setting.png' %}" alt="Settings"> Settings</li>
+            <li><img src="{% static 'images/logout.png' %}" alt="Logout"> Log Out</li>
         </ul>
     </div>
 
     <div class="main-content">
         <div class="container">
             <div class="top-right-profile">
-                <img src="/profile.jpg" alt="Profile Picture">
+                <img src="{% static 'images/profile.jpg' %}" alt="Profile Picture">
                 <div class="top-right-info">
                     <h4>Pratik</h4>
                     <p>pratikchanna@icloud.com</p>

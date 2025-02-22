@@ -341,7 +341,7 @@
                         </div>
                     </div>
                     <div class="mark-attendance">
-                        <button>Mark Attendance</button>
+                        <button onclick="redirectToCapture()">Mark Attendance</button>
                     </div>
                 </div>
 
@@ -368,6 +368,10 @@
     </div>
 
     <script>
+
+function redirectToCapture() {
+            window.location.href = "{% url 'capture' %}";
+        }
         let shiftTime = 10; // Set shift duration in seconds (for testing)
         let shiftTimer, overtimeTimer;
         let shiftSeconds = 0, overtimeSeconds = 0;

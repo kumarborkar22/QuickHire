@@ -288,8 +288,12 @@
         <p class="date">07/02/2025</p>
         <p class="status">Marked As <span class="late">Late</span></p>
         <p class="message">Make Sure To Be On Time Tomorrow</p>
-        <button class="confirm-btn">Confirm Check In <i class="fas fa-check"></i></button>
+        <button class="confirm-btn" onclick="redirectToAttendance()">Confirm Check In <i class="fas fa-check"></i></button>
     </div>
-
+    <script>
+        function redirectToAttendance() {
+            window.location.href = "{% url 'attendance' %}";
+        }
+    </script>
 </body>
 </html>

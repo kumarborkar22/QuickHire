@@ -1,12 +1,10 @@
 from django.shortcuts import render
-from django.http import StreamingHttpResponse
+from django.http import StreamingHttpResponse, JsonResponse, HttpResponse
 import cv2
-from django.http import StreamingHttpResponse, JsonResponse
 from django.conf import settings
 import os
 from .models import Attendance
 import face_recognition
-from django.http import HttpResponse
 import csv
 from django.utils.timezone import now
 
@@ -34,7 +32,7 @@ def video_feed(request):
     return StreamingHttpResponse(generate_frames(), content_type='multipart/x-mixed-replace; boundary=frame')
 
 def home(request):
-    return render(request, 'attendance/capture.html')
+    return render(request, 'attendance/attendance1.html')
 
 def capture_image(request):
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
@@ -60,7 +58,6 @@ def capture_image(request):
             return JsonResponse({"error": "No face detected! Please position yourself in front of the camera."}, status=400)
 
     return JsonResponse({"error": "Failed to capture image"}, status=500)
-
 
 def attendance_records(request):
     records = Attendance.objects.all().order_by('-timestamp')
@@ -106,10 +103,20 @@ def stop_camera(request):
         camera = None
     return JsonResponse({"message": "Camera stopped"})
 
-def attendance3(request):
-    timestamp = now().timestamp()
-    image_url = settings.MEDIA_URL + "captured_face.jpg"
-    return render(request, 'attendance/attendance3.html', {'image_url': image_url, 'timestamp': timestamp})
-
 def attendance1(request):
-    return render(request, 'attendance/attendance1.html')  # Update path
+    return render(request, 'attendance/attendance1.html')
+
+def capture(request):
+    return render(request, 'attendance/capture.html')
+
+def attendance3(request):
+    return render(request, 'attendance/attendance3.html')
+
+def attendance4(request):
+    return render(request, 'attendance/attendance4.html')
+
+def capture(request):
+    return render(request, 'attendance/capture.html')
+
+def attendance_view(request):
+    return render(request, "attendance/attendance4.html")

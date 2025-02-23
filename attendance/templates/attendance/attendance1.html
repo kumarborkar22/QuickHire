@@ -324,20 +324,21 @@
             <div class="top-right-profile">
                 <img src="{% static 'images/profile.jpg' %}" alt="Profile Picture">
                 <div class="top-right-info">
-                    <h4>Pratik</h4>
-                    <p>pratikchanna@icloud.com</p>
+                    <h4>Kumar</h4>
+                    <p>kumarborkar@icloud.com</p>
                 </div>
             </div>
 
             <header class="dashboard">
                 <div class="profile-section">
                     <div class="profile">
-                        <img src="/profile.jpg" alt="Profile Picture">
+                        <img src="{% static 'images/kumar_photo.jpg' %}" alt="Profile Picture">
                         <div class="profile-info">
                             <h5 class="normal_text">Good Morning</h5>
-                            <h3>Pratik</h3>
-                            <p>pratikchanna@icloud.com</p>
-                            <p>07/02/2025</p>
+                            <h3>Kumar</h3>
+                            <p>kumarborkar@icloud.com</p>
+                            <p id="current-date"></p>
+
                         </div>
                     </div>
                     <div class="mark-attendance">
@@ -346,21 +347,11 @@
                 </div>
 
                 <div class="timer-section">
-                    <!-- <div class="timer-container">
-                        <div class="timer-box">
-                            <p>Timer</p>
-                            <h5>00:00:00</h5>
-                        </div>
-                        <div class="overtime-box">
-                            <p>Overtime</p>
-                            <h5>00:00:00</h5>
-                        </div>
-                    </div> -->
                     <div class="overtime">
                         <button>OverTime</button>
                     </div>
                     <div class="logout">
-                        <button>Logout</button>
+                        <button>Checkout</button>
                     </div>
                 </div>
             </header>
@@ -369,19 +360,26 @@
 
     <script>
 
-function redirectToCapture() {
+        function redirectToCapture() {
             window.location.href = "{% url 'capture' %}";
         }
-        let shiftTime = 10; // Set shift duration in seconds (for testing)
+
+        function updateDate() {
+        let today = new Date();
+        let dateString = today.toLocaleDateString('en-GB');
+        document.getElementById("current-date").innerText = dateString;
+        }
+        updateDate();
+
+        let shiftTime = 10;
         let shiftTimer, overtimeTimer;
         let shiftSeconds = 0, overtimeSeconds = 0;
         let shiftRunning = false, overtimeRunning = false;
 
-        // Display current date
         document.getElementById("current-date").innerText = new Date().toLocaleDateString();
 
         function startShift() {
-            if (shiftRunning) return; // Prevent duplicate timers
+            if (shiftRunning) return;
             shiftRunning = true;
             document.getElementById("startShift").innerText = "Shift Started";
 

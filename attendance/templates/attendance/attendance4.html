@@ -267,20 +267,21 @@
         <div class="top-right-profile">
             <img src="{% static 'images/profile.jpg' %}" alt="Profile Picture">
             <div class="top-right-info">
-                <h4>Pratik</h4>
-                <p>pratikchanna@icloud.com</p>
+                <h4>Kumar</h4>
+                <p>kumarborkar@icloud.com</p>
             </div>
         </div>
 
         <div class="card">
-            <h2 class="top-left-menu"><a href="dashboard.html" class="back-arrow"><i class="fa-solid fa-arrow-left"></i></a>Mark Attendance</h2>
+            <h2 class="top-left-menu"><a href="attendance1.html" class="back-arrow"><i class="fa-solid fa-arrow-left"></i></a>Mark Attendance</h2>
 
             <div class="profile-section">
                 {% load static %}
                 <img src="{% static 'images/kumar_photo.jpg' %}" alt="Avtar">
                 <div class="user-details">
                     <h2>Kumar</h2>
-                    <p class="time">10:15:07</p>
+                    <p class="time" id="current-time">--:--:--</p>
+
                 </div>
             </div>
             <p class="status">Check In Confirmed</p>
@@ -288,5 +289,15 @@
             <div class="share-icon">&#128279;</div>
         </div>
     </div>
+    <script>
+        function updateTime() {
+            let now = new Date();
+            let timeString = now.toLocaleTimeString();
+            document.getElementById("current-time").innerText = timeString;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
 </body>
 </html>

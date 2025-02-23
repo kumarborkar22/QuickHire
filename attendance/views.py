@@ -59,6 +59,7 @@ def capture_image(request):
 
     return JsonResponse({"error": "Failed to capture image"}, status=500)
 
+
 def attendance_records(request):
     records = Attendance.objects.all().order_by('-timestamp')
     return render(request, 'attendance/records.html', {'records': records})
@@ -110,7 +111,10 @@ def capture(request):
     return render(request, 'attendance/capture.html')
 
 def attendance3(request):
-    return render(request, 'attendance/attendance3.html')
+    timestamp = now().timestamp()
+    image_url = settings.MEDIA_URL + "captured_face.jpg"
+    return render(request, 'attendance/attendance3.html', {'image_url': image_url, 'timestamp': timestamp})
+
 
 def attendance4(request):
     return render(request, 'attendance/attendance4.html')
@@ -120,3 +124,37 @@ def capture(request):
 
 def attendance_view(request):
     return render(request, "attendance/attendance4.html")
+
+from django.core.mail import send_mail
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+@csrf_exempt
+def send_overtime_email(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        email_subject = "Shift Completed - Overtime Request"
+        email_message = data.get("message", "Your shift is completed. Do you want to do overtime?")
+        recipient_email = "user@example.com"
+
+        send_mail(
+            email_subject,
+            email_message,
+            "kumarborkar403@gmail.com",
+            [recipient_email],
+            fail_silently=False,
+        )
+
+        return JsonResponse({"message": "Email sent successfully!"})
+
+@csrf_exempt
+def start_overtime(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        if data.get("overtime_started"):
+            return JsonResponse({"message": "Overtime started!"})
+    
+    return JsonResponse({"error": "Invalid request"}, status=400)
+
+def attendance_view(request):
+    return render(request, 'attendance/attendance1.html') #work nhi karat ahe...

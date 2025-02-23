@@ -268,20 +268,20 @@
     </div>
 
     <div class="container">
-        <h2 class="top-left-menu"><a href="dashboard.html" class="back-arrow"><i class="fa-solid fa-arrow-left"></i></a>Mark Attendance</h2>
+        <h2 class="top-left-menu"><a href="attendance1.html" class="back-arrow"><i class="fa-solid fa-arrow-left"></i></a>Mark Attendance</h2>
 
         <div class="top-right-profile">
             <img src="{% static 'images/profile.jpg' %}" alt="Profile Picture">
             <div class="top-right-info">
-                <h4>Pratik</h4>
-                <p>pratikchanna@icloud.com</p>
+                <h4>Kumar</h4>
+                <p>kumarborkar@icloud.com</p>
             </div>
         </div>
 
         <div class="avatar">
             <img src="{{ image_url }}" alt="User Avatar">
         </div>
-        <h2>Pratik</h2>
+        <h2>Kumar</h2>
         <div class="time">
             <span>10:15:07</span>
         </div>
@@ -294,6 +294,25 @@
         function redirectToAttendance() {
             window.location.href = "{% url 'attendance' %}";
         }
+
+        function updateTime() {
+        let now = new Date();
+        
+        let hours = now.getHours().toString().padStart(2, '0');
+        let minutes = now.getMinutes().toString().padStart(2, '0');
+        let seconds = now.getSeconds().toString().padStart(2, '0');
+        let formattedTime = `${hours}:${minutes}:${seconds}`;
+        
+        let day = now.getDate().toString().padStart(2, '0');
+        let month = (now.getMonth() + 1).toString().padStart(2, '0');
+        let year = now.getFullYear();
+        let formattedDate = `${day}/${month}/${year}`;
+        
+        document.querySelector('.time').innerText = formattedTime;
+        document.querySelector('.date').innerText = formattedDate;
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
     </script>
 </body>
 </html>

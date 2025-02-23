@@ -348,8 +348,9 @@
 
                 <div class="timer-section">
                     <div class="overtime">
-                        <button>OverTime</button>
+                        <button id="overtime-button" style="display: none;">OverTime</button>
                     </div>
+                    
                     <div class="logout">
                         <button>Checkout</button>
                     </div>
@@ -371,58 +372,70 @@
         }
         updateDate();
 
-        let shiftTime = 10;
-        let shiftTimer, overtimeTimer;
-        let shiftSeconds = 0, overtimeSeconds = 0;
-        let shiftRunning = false, overtimeRunning = false;
+    let shiftTime = 10; // 10 seconds for testing
+    let shiftTimer, overtimeTimer;
+    let shiftSeconds = 0, overtimeSeconds = 0;
+    let shiftRunning = false, overtimeRunning = false;
 
-        document.getElementById("current-date").innerText = new Date().toLocaleDateString();
+    document.getElementById("current-date").innerText = new Date().toLocaleDateString();
 
-        function startShift() {
-            if (shiftRunning) return;
-            shiftRunning = true;
-            document.getElementById("startShift").innerText = "Shift Started";
+    function startShift() {
+        if (shiftRunning) return;
+        shiftRunning = true;
+        document.getElementById("startShift").innerText = "Shift Started";
 
-            shiftTimer = setInterval(() => {
-                shiftSeconds++;
-                document.getElementById("shift-timer").innerText = formatTime(shiftSeconds);
+        shiftTimer = setInterval(() => {
+            shiftSeconds++;
+            document.getElementById("shift-timer").innerText = formatTime(shiftSeconds);
 
-                if (shiftSeconds >= shiftTime) {
-                    clearInterval(shiftTimer);
-                    shiftRunning = false;
-                    askOvertime();
-                }
-            }, 1000);
-        }
-
-        function askOvertime() {
-            let overtimeConfirm = confirm("Your shift is completed! Do you want to continue with overtime?");
-            if (overtimeConfirm) {
-                startOvertime();
-            } else {
-                alert("Shift completed. Logging out...");
+            if (shiftSeconds >= shiftTime) {
+                clearInterval(shiftTimer);
+                shiftRunning = false;
+                askOvertime();
             }
+        }, 1000);
+    }
+
+    function askOvertime() {
+        let overtimeConfirm = confirm("Your shift is completed! Do you want to continue with overtime?");
+        if (overtimeConfirm) {
+            localStorage.setItem("overtimeEnabled", "true"); // Store overtime status
+            startOvertime();
+        } else {
+            alert("Shift completed. Logging out...");
+            localStorage.removeItem("overtimeEnabled"); // Clear if not doing overtime
         }
+    }
 
-        function startOvertime() {
-            if (overtimeRunning) return;
-            overtimeRunning = true;
-            document.getElementById("overtime-timer").style.color = "red";
+    function startOvertime() {
+        if (overtimeRunning) return;
+        overtimeRunning = true;
+        document.getElementById("overtime-button").style.display = "block"; // Show overtime button
+        document.getElementById("overtime-timer").style.color = "red";
 
-            overtimeTimer = setInterval(() => {
-                overtimeSeconds++;
-                document.getElementById("overtime-timer").innerText = formatTime(overtimeSeconds);
-            }, 1000);
+        overtimeTimer = setInterval(() => {
+            overtimeSeconds++;
+            document.getElementById("overtime-timer").innerText = formatTime(overtimeSeconds);
+        }, 1000);
+    }
+
+    function formatTime(seconds) {
+        let hrs = Math.floor(seconds / 3600);
+        let mins = Math.floor((seconds % 3600) / 60);
+        let secs = seconds % 60;
+        return `${hrs.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+    }
+
+    // Check on page load if overtime button should be displayed
+    window.onload = function () {
+        if (localStorage.getItem("overtimeEnabled") === "true") {
+            document.getElementById("overtime-button").style.display = "block";
+        } else {
+            document.getElementById("overtime-button").style.display = "none";
         }
+    };
 
-        function formatTime(seconds) {
-            let hrs = Math.floor(seconds / 3600);
-            let mins = Math.floor((seconds % 3600) / 60);
-            let secs = seconds % 60;
-            return `${hrs.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
-        }
-
-        document.getElementById("startShift").addEventListener("click", startShift);
+    document.getElementById("startShift").addEventListener("click", startShift);
     </script>
 
 </body>

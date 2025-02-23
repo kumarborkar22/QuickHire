@@ -125,36 +125,27 @@ def capture(request):
 def attendance_view(request):
     return render(request, "attendance/attendance4.html")
 
+
 from django.core.mail import send_mail
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 import json
-@csrf_exempt
+
 def send_overtime_email(request):
     if request.method == "POST":
         data = json.loads(request.body)
-        email_subject = "Shift Completed - Overtime Request"
-        email_message = data.get("message", "Your shift is completed. Do you want to do overtime?")
-        recipient_email = "user@example.com"
+        email = data.get("email")
 
         send_mail(
-            email_subject,
-            email_message,
-            "kumarborkar403@gmail.com",
-            [recipient_email],
+            "Overtime Request",
+            "Your shift is over. If you want to continue for overtime, go to the first page and click the Overtime button.",
+            "admin@example.com",
+            [email],
             fail_silently=False,
         )
-
         return JsonResponse({"message": "Email sent successfully!"})
 
-@csrf_exempt
-def start_overtime(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-        if data.get("overtime_started"):
-            return JsonResponse({"message": "Overtime started!"})
-    
     return JsonResponse({"error": "Invalid request"}, status=400)
 
-def attendance_view(request):
-    return render(request, 'attendance/attendance1.html') #work nhi karat ahe...
+
+def attendance_page(request):
+    return render(request, 'attendance/attendance1.html')

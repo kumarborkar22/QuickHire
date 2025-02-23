@@ -2,7 +2,7 @@ from django.urls import path
 from .import views
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import attendance_view, send_overtime_email, start_overtime
+from .views import attendance_view, send_overtime_email
 
 
 urlpatterns = [
@@ -20,7 +20,6 @@ urlpatterns = [
     path('download/', views.download_attendance_csv, name='download_csv'),
     path('attendance/', attendance_view, name='attendance'),
     path("send-overtime-email/", send_overtime_email, name="send_overtime_email"),
-    path("start-overtime/", start_overtime, name="start_overtime"),
 
 ]
 
